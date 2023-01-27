@@ -4,6 +4,7 @@ import 'package:chit_chat/provider/signup_provider.dart';
 import 'package:chit_chat/screens/forgot_screen.dart';
 import 'package:chit_chat/screens/login_screen.dart';
 import 'package:chit_chat/screens/signup_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,9 @@ class ChitChat extends StatelessWidget {
       child: MaterialApp(
         title: 'Chit Chat',
         home: const LoginScreen(),
-        initialRoute: LoginScreen.loginRoute,
+        initialRoute: FirebaseAuth.instance.currentUser != null
+            ? LoginScreen.loginRoute
+            : SignupScreen.signupRoute,
         routes: {
           LoginScreen.loginRoute: (context) => const LoginScreen(),
           SignupScreen.signupRoute: (context) => const SignupScreen(),

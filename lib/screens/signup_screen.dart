@@ -5,16 +5,11 @@ import '../widgets/button_widget.dart';
 import '../widgets/image_widget.dart';
 import '../widgets/textfield_widget.dart';
 
-class SignupScreen extends StatefulWidget {
+class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
   static const String signupRoute = '/signup';
 
-  @override
-  State<SignupScreen> createState() => _SignupScreenState();
-}
-
-class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     final signupProvider = Provider.of<SignupProvider>(context, listen: false);
@@ -68,7 +63,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ButtonWidget(
                 text: 'Signup',
                 onPressed: () {
-                  signupProvider.signUpUser();
+                  signupProvider.signUpUser(context);
                 },
               ),
               const SizedBox(height: 10),

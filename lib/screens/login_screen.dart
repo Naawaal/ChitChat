@@ -8,16 +8,11 @@ import 'package:provider/provider.dart';
 
 import '../widgets/button_widget.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   static const String loginRoute = '/login';
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
@@ -74,7 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
               //----- Button For Login ----//
               ButtonWidget(
                 text: 'Login',
-                onPressed: () {},
+                onPressed: () {
+                  loginProvider.loginUser();
+                },
               ),
               const SizedBox(height: 10),
               const Padding(

@@ -1,5 +1,6 @@
 import 'package:chit_chat/firebase/signup.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignupProvider with ChangeNotifier {
   final TextEditingController _nameController = TextEditingController();
@@ -12,8 +13,13 @@ class SignupProvider with ChangeNotifier {
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
 
-  void signUpUser() {
+  void signUpUser(context) {
     SignUp().signUpUser(
         email: _emailController.text, password: _passwordController.text);
+    Navigator.pop(context);
+    Fluttertoast.showToast(
+      msg: 'User Created Successfully',
+      timeInSecForIosWeb: 3,
+    );
   }
 }
