@@ -4,6 +4,7 @@ import 'package:chit_chat/screens/signup_screen.dart';
 import 'package:chit_chat/widgets/image_widget.dart';
 import 'package:chit_chat/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/button_widget.dart';
@@ -70,7 +71,20 @@ class LoginScreen extends StatelessWidget {
               ButtonWidget(
                 text: 'Login',
                 onPressed: () {
-                  loginProvider.loginUser();
+                  if (loginProvider.emailController.text.isEmpty ||
+                      loginProvider.passwordController.text.isEmpty) {
+                    Fluttertoast.showToast(
+                      msg: 'Please Fill All Fields',
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                  } else {
+                    loginProvider.loginUser();
+                  }
                 },
               ),
               const SizedBox(height: 10),

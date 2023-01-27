@@ -8,6 +8,6 @@ class ForgotProvider with ChangeNotifier {
   TextEditingController get emailController => _emailController;
 
   void forgotPassword() {
-    Forgot().forgotPassword(email: _emailController.text);
+    Forgot.forgotPassword(email: _emailController.text);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:chit_chat/firebase/login.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class LoginProvider with ChangeNotifier {
   final TextEditingController _emailController = TextEditingController();
@@ -9,7 +9,9 @@ class LoginProvider with ChangeNotifier {
   TextEditingController get passwordController => _passwordController;
 
   void loginUser() {
-    Login().loginUser(
-        email: _emailController.text, password: _passwordController.text);
+    Login.loginUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 }

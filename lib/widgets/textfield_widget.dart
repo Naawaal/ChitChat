@@ -4,7 +4,7 @@ class TextFormFieldWidgets extends StatelessWidget {
   final String hintText;
   final String labelText;
   final Widget prefixIcon;
-  final String? errorText;
+
   final TextEditingController controller;
 
   const TextFormFieldWidgets({
@@ -13,7 +13,6 @@ class TextFormFieldWidgets extends StatelessWidget {
     required this.labelText,
     required this.prefixIcon,
     required this.controller,
-    this.errorText,
   });
 
   @override
@@ -37,7 +36,6 @@ class TextFormFieldWidgets extends StatelessWidget {
                 hintText: hintText,
                 labelText: labelText,
                 prefixIcon: prefixIcon,
-                errorText: errorText,
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0)),
                 ),
