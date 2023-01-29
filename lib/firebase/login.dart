@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Login {
-  static void loginUser(
+  static Future<String?> loginUser(
       {required String email, required String password}) async {
     try {
       final loginResult =
@@ -20,6 +20,7 @@ class Login {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+      return loginResult.user!.uid;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Fluttertoast.showToast(
@@ -65,6 +66,7 @@ class Login {
           textColor: Colors.white,
         );
       }
+      return null;
     }
   }
 }

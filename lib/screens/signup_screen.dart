@@ -63,7 +63,7 @@ class SignupScreen extends StatelessWidget {
               ButtonWidget(
                 text: 'Signup',
                 onPressed: () {
-                  signupProvider.signUpUser();
+                  signupProvider.signUpUser(context);
                 },
               ),
               const SizedBox(height: 10),

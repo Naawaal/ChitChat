@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                       fontSize: 16.0,
                     );
                   } else {
-                    loginProvider.loginUser();
+                    loginProvider.loginUser(context);
                   }
                 },
               ),

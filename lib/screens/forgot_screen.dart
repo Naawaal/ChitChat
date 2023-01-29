@@ -1,4 +1,5 @@
 import 'package:chit_chat/widgets/button_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,7 @@ class ForgotScreen extends StatelessWidget {
             ButtonWidget(
               text: 'Send Email',
               onPressed: () {
-                forgotProvider.forgotPassword();
+                FirebaseAuth.instance.signOut();
               },
             ),
           ],

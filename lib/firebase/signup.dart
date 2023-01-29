@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUp {
-  static void signUpUser(
+  static Future<String?> signUpUser(
       {required String email, required String password}) async {
     try {
       final signUpResult =
@@ -19,6 +19,7 @@ class SignUp {
           backgroundColor: Colors.green,
           textColor: Colors.white,
         );
+        return signUpResult.user!.uid;
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -49,7 +50,30 @@ class SignUp {
           backgroundColor: Colors.red,
           textColor: Colors.white,
         );
+      } else if (e.code == 'user-disabled') {
+        Fluttertoast.showToast(
+          msg: 'The user account has been disabled by an administrator.',
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+      } else if (e.code == 'too-many-requests') {
+        Fluttertoast.showToast(
+          msg:
+              'We have blocked all requests from this device due to unusual activity. Try again later.',
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+      } else if (email.isEmpty || password.isEmpty) {
+        Fluttertoast.showToast(
+          msg: 'All the fields are required',
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
       }
+      return null;
     }
   }
 }

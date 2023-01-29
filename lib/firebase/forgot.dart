@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class Forgot {
   static void forgotPassword({required String email}) async {
     try {
-      final forgotResult = FirebaseAuth.instance.sendPasswordResetEmail(
+      final forgotResult = await FirebaseAuth.instance.sendPasswordResetEmail(
         email: email,
       );
       Fluttertoast.showToast(
@@ -54,9 +54,24 @@ class Forgot {
           backgroundColor: Colors.red,
           textColor: Colors.white,
         );
+      } else if (e.code == 'network-request-failed') {
+        Fluttertoast.showToast(
+          msg:
+              'A network error (such as timeout, interrupted connection or unreachable host) has occurred.',
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+      } else if (email.isEmpty) {
+        Fluttertoast.showToast(
+          msg: 'Email is required.',
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
       } else {
         Fluttertoast.showToast(
-          msg: 'An undefined Error happened.',
+          msg: 'Something went wrong.',
           timeInSecForIosWeb: 3,
           backgroundColor: Colors.red,
           textColor: Colors.white,
