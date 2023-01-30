@@ -1,11 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUp {
-  static Future<String?> signUpUser(
-      {required String email, required String password}) async {
+  static Future<String?> signUpUser({
+    required String email,
+    required String password,
+    required String name,
+    required int number,
+  }) async {
     try {
       final signUpResult =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -21,6 +26,11 @@ class SignUp {
         );
         return signUpResult.user!.uid;
       }
+      await saveUserData(
+          uid: signUpResult.user!.uid,
+          name: name,
+          number: number,
+          email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Fluttertoast.showToast(
@@ -74,6 +84,32 @@ class SignUp {
         );
       }
       return null;
+    }
+  }
+
+  static Future<void> saveUserData({
+    required final String uid,
+    required final String name,
+    required final int number,
+    required final String email,
+  }) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(uid).set({
+        'uid': uid,
+        'name': name,
+        'email': email,
+        'number': int.parse(number.toString()),
+      });
+    } on FirebaseFirestore catch (e) {
+      Fluttertoast.showToast(
+        msg: e.toString(),
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
   }
 }

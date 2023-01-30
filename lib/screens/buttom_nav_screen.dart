@@ -40,10 +40,10 @@ class _ChatScreenState extends State<ButtomNavigationScreen> {
             curretIndex = index;
           });
         },
-        children: const [
-          ChatScreen(),
+        children: [
+          const ChatScreen(),
           SearchScreen(),
-          ProfileScreen(),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: ButtomNavigationWidget(

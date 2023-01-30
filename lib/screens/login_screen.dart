@@ -1,3 +1,4 @@
+import 'package:chit_chat/firebase/login.dart';
 import 'package:chit_chat/provider/login_provider.dart';
 import 'package:chit_chat/screens/forgot_screen.dart';
 import 'package:chit_chat/screens/signup_screen.dart';
@@ -9,11 +10,16 @@ import 'package:provider/provider.dart';
 
 import '../widgets/button_widget.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   static const String loginRoute = '/login';
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);

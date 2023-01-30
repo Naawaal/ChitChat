@@ -1,6 +1,6 @@
 import 'package:chit_chat/firebase/signup.dart';
 import 'package:chit_chat/screens/buttom_nav_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class SignupProvider with ChangeNotifier {
   final TextEditingController _nameController = TextEditingController();
@@ -14,12 +14,12 @@ class SignupProvider with ChangeNotifier {
   TextEditingController get passwordController => _passwordController;
 
   void signUpUser(context) async {
-    final SignUpUID = await SignUp.signUpUser(
+    await SignUp.signUpUser(
       email: _emailController.text,
       password: _passwordController.text,
+      name: _nameController.text,
+      number: int.parse(_phoneController.text),
     );
-    if (SignUpUID != null) {
-      Navigator.pushNamed(context, ButtomNavigationScreen.chatRoute);
-    }
+    Navigator.pushNamed(context, ButtomNavigationScreen.chatRoute);
   }
 }

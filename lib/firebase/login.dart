@@ -1,3 +1,5 @@
+import 'package:chit_chat/screens/buttom_nav_screen.dart';
+import 'package:chit_chat/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -68,5 +70,9 @@ class Login {
       }
       return null;
     }
+  }
+
+  Stream<User?> checkingAuthUser(context) {
+    return FirebaseAuth.instance.authStateChanges();
   }
 }

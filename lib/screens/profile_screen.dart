@@ -1,4 +1,3 @@
-import 'package:chit_chat/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -37,11 +36,22 @@ class ProfileScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Text('karanstha197@gmail.com',
-                  style: TextStyle(
-                    fontSize: 16,
-                  )),
-              const SizedBox(height: 15),
+              const Text(
+                'karanstha197@gmail.com',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text(
+                '9804889314',
+                style: TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(height: 05),
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
@@ -85,10 +95,9 @@ class ProfileScreen extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('Logout'),
-                onTap: () {
+                onTap: () async {
                   if (FirebaseAuth.instance.currentUser != null) {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.pop(context);
+                    await FirebaseAuth.instance.signOut();
                   }
                 },
               ),
